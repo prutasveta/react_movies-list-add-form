@@ -41,7 +41,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setIsImgUrlValid(!!newImgUrl);
   };
 
-  const handleChangeImbdUrl = (text: string) => {
+  const handleChangeImdbUrl = (text: string) => {
     const newImdbUrl = text.trim();
 
     setImdbUrl(newImdbUrl);
@@ -49,7 +49,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
     setIsImdbUrlValid(!!newImdbUrl);
   };
 
-  const handleChangeImbdId = (text: string) => {
+  const handleChangeImdbId = (text: string) => {
     const newImdbId = text.trim();
 
     setImdbId(newImdbId);
@@ -58,10 +58,6 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   };
 
   const reset = () => {
-    // if (!title) {
-    //   return;
-    // }
-
     setTitle('');
     setDescription('');
     setImgUrl('');
@@ -79,10 +75,8 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   const disabled =
     !isTitleValid || !isImgUrlValid || !isImdbUrlValid || !isImdbIdValid;
 
-  const handleClick = () => {
-    // if (disabled) {
-    //   return;
-    // }
+  const handleClick = (event: React.FormEvent) => {
+    event.preventDefault();
 
     onAdd({
       title,
@@ -138,7 +132,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         label="Imdb URL"
         value={imdbUrl}
         onChange={text => {
-          handleChangeImbdUrl(text);
+          handleChangeImdbUrl(text);
         }}
         required
       />
@@ -147,7 +141,7 @@ export const NewMovie: React.FC<Props> = ({ onAdd }) => {
         name="imdbId"
         label="Imdb ID"
         value={imdbId}
-        onChange={handleChangeImbdId}
+        onChange={handleChangeImdbId}
         required
       />
 
